@@ -1,0 +1,14 @@
+{
+  "id":"org.tr.sling.demo:launcher:slingosgifeature:launcher:1.0.0",
+  "title":"adrcrud - Launcher",
+  "description":"This is a Module which contains a sample feature model build, built on\n        top of the Sling Starter and adding this project's artifacts.",
+  "bundles":[
+    {
+      "id":"org.tr.sling.demo:core:1.0.0",
+      "start-order":"20"
+    }
+  ],
+  "content-packages:ARTIFACTS|true":[
+    "org.tr.sling.demo:ui.apps:zip:1.0.0"
+  ]
+}
