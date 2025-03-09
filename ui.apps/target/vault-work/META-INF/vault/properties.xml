@@ -3,7 +3,7 @@
 <properties>
 <comment>adrcrud - UI Apps</comment>
 <entry key="allowIndexDefinitions">false</entry>
-<entry key="created">2025-03-03T12:27:19.733Z</entry>
+<entry key="created">2025-03-09T09:48:15.591Z</entry>
 <entry key="groupId">org.tr.sling.demo</entry>
 <entry key="name">ui.apps</entry>
 <entry key="description">This is an empty JCR Package where the JCR Content
