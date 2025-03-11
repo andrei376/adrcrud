@@ -53,7 +53,10 @@
                 <configuration>
                     <instructions>
                         <Embed-Dependency>*;scope=compile;inline=true</Embed-Dependency>
-                        <Sling-Model-Packages>org.tr.sling.demo.adrcrud.models</Sling-Model-Packages>
+                        <Sling-Model-Packages>
+                            org.tr.sling.demo.adrcrud.models,
+                            org.apache.sling.samples.htlblog
+                        </Sling-Model-Packages>
                         <_dsannotations>*</_dsannotations>
                         <_metatypeannotations>*</_metatypeannotations>
                         <_removeheaders>
@@ -61,9 +64,42 @@
                             Private-Package,
                             Include-Resource
                         </_removeheaders>
+                        <Sling-Initial-Content>
+                            initial-content/apps/htlblog;overwrite:=true;uninstall:=true;path:=/apps/htlblog,
+                            initial-content/content/htlblog;overwrite:=true;uninstall:=true;path:=/content/htlblog
+                        </Sling-Initial-Content>
                     </instructions>
                 </configuration>
             </plugin>
+            <!-- <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        
+                        <_dsannotations>*</_dsannotations>
+                        <Import-Package>javax.inject;version=0.0.0,*</Import-Package>
+                        <Embed-Dependency>*;scope=compile;inline=true</Embed-Dependency>
+                        <Sling-Model-Packages>
+                            org.apache.sling.samples.htlblog,
+                            org.tr.sling.demo.adrcrud.models
+                        </Sling-Model-Packages>                        
+                        <Sling-Initial-Content>
+                            initial-content/apps/htlblog;overwrite:=true;uninstall:=true;path:=/apps/htlblog,
+                            initial-content/content/htlblog;overwrite:=true;uninstall:=true;path:=/content/htlblog
+                        </Sling-Initial-Content>
+                        <_dsannotations>*</_dsannotations>
+                        <_metatypeannotations>*</_metatypeannotations>
+                        <_removeheaders>
+                            Embed-Dependency,
+                            Private-Package,
+                            Include-Resource
+                        </_removeheaders>
+                  </instructions>
+                </configuration>
+                <version>3.3.0</version>
+            </plugin> -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -79,6 +115,23 @@
                     <slingUrl>http://${sling.host}:${sling.port}/system/console</slingUrl>
                     <user>${sling.user}</user>
                     <password>${sling.password}</password>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>htl-maven-plugin</artifactId>
+                <version>1.0.6</version>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>src/main/resources/initial-content/apps</sourceDirectory>
+                    <failOnWarnings>true</failOnWarnings>
                 </configuration>
             </plugin>
         </plugins>
@@ -104,6 +157,11 @@
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.compendium</artifactId>
         </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -112,6 +170,12 @@
         <dependency>
             <groupId>javax.jcr</groupId>
             <artifactId>jcr</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
