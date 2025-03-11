@@ -1,4 +1,4 @@
 core/target/
-launcher/**
-ui.apps/target/**
+launcher/
+ui.apps/target/
 .vscode/
